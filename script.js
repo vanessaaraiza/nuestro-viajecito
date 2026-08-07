@@ -1,6 +1,6 @@
 (function(){"use strict";
 var START_DATE_ISO="2026-08-06T12:00:00+01:00",END_DATE_ISO="2026-09-21T16:30:00+01:00",START_TIMESTAMP=Date.parse(START_DATE_ISO),END_TIMESTAMP=Date.parse(END_DATE_ISO),STORAGE_KEY="nuestro-viajecito-checklist-v2";
-var IMAGES={vanePacking:"./assets/vane-packing.jpg",tatiPacking:"./assets/tati-packing.jpg",vaneWalking:"./assets/vane-walking.jpg",tatiWalking:"./assets/tati-walking.jpg",hug:"./assets/abrazo-final.jpg"};
+var IMAGES={vanePacking:"./vane-packing.jpg",tatiPacking:"./tati-packing.jpg",vaneWalking:"./vane-walking.jpg",tatiWalking:"./tati-walking.jpg",hug:"./abrazo-final.jpg"}
 var FACTS=[
 {category:"🏛 Arquitectura",title:"Riads tradicionales",text:"Los riads esconden toda su belleza hacia el interior. Desde fuera parecen casas sencillas, sin ventanas hacia la calle, para proteger la privacidad familiar y mantener el interior fresco durante el calor del verano."},
 {category:"🏛 Arquitectura",title:"Puertas antiguas",text:"Muchas puertas de Marrakech todavía conservan sus herrajes originales de hace siglos."},
@@ -41,12 +41,6 @@ function closeFinalPage(){if(!els.finalPage||els.finalPage.hidden)return;els.fin
 function init(){initElements();els.newFact.addEventListener("click",showNewFact);els.rewardButton.addEventListener("click",openReward);els.closeFinalPage.addEventListener("click",closeFinalPage);document.addEventListener("keydown",function(event){if(event.key==="Escape"&&els.finalPage.classList.contains("is-open"))closeFinalPage()});renderChecklist();restoreChecklist();var firstFact=Math.floor(Math.random()*FACTS.length);lastFactIndex=firstFact;showFact(firstFact,false);updateCountdown();countdownTimer=setInterval(updateCountdown,1000)}
 init();
 // Nivel secreto desbloqueado: mejorar esta página juntos.
-// TODO:
-// Llegar a Marrakech.
-// Abrazarnos.
-// Repetir.
-// Error 404:
-// Distancia entre nosotros no encontrada.
 // Aquí podrías añadir una nueva función que yo no espere.
 // P. D. Me gustas mucho.
 })();
