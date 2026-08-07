@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#F7F0E3" />
+  <meta name="description" content="Una postal interactiva sobre la espera de un viaje a Marrakech." />
+  <title>Nuestro viajecito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <!-- Esta página todavía no está terminada. Esa era parte de la idea. -->
+  <!-- Si estás leyendo esto, significa que empezaste a investigar el proyecto. -->
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <main id="contenido">
+    <section class="section cover" id="portada" aria-labelledby="cover-title">
+      <p class="cover__quote"><span>La espera a veces también</span><span>forma parte del viaje.</span></p>
+      <div class="cover__title-wrap">
+        <span class="star star--one" aria-hidden="true">✦</span>
+        <span class="star star--two" aria-hidden="true">✦</span>
+        <h1 id="cover-title">Nuestro<br><em>viajecito</em></h1>
+        <span class="star star--three" aria-hidden="true">✦</span>
+      </div>
+      <div class="travellers-stage" aria-label="Vane y Tati acercándose para el viaje">
+        <div class="travellers-stage__route" aria-hidden="true"></div>
+        <figure class="traveller traveller--vane" id="vane">
+          <img id="vaneImage" src="./assets/vane-packing.jpg" alt="Vane preparando su maleta" />
+          <figcaption>Vane</figcaption>
+        </figure>
+        <figure class="traveller traveller--tati" id="tati">
+          <img id="tatiImage" src="./assets/tati-packing.jpg" alt="Tati preparando su maleta" />
+          <figcaption>Tati</figcaption>
+        </figure>
+        <figure class="traveller traveller--hug" id="hug" aria-hidden="true">
+          <img src="./assets/abrazo-final.jpg" alt="Vane y Tati abrazándose en Marrakech" />
+          <figcaption>por fin</figcaption>
+        </figure>
+      </div>
+      <div class="countdown-wrap">
+        <p class="countdown-kicker">Cada día un poquito más cerca…</p>
+        <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true">
+          <div class="countdown__unit"><strong id="days">00</strong><span>días</span></div>
+          <div class="countdown__unit"><strong id="hours">00</strong><span>horas</span></div>
+          <div class="countdown__unit"><strong id="minutes">00</strong><span>minutos</span></div>
+          <div class="countdown__unit"><strong id="seconds">00</strong><span>segundos</span></div>
+        </div>
+        <p class="arrival-copy" id="arrivalCopy" hidden>Por fin estamos en el mismo lugar.</p>
+      </div>
+    </section>
+
+    <section class="section soundtrack" id="soundtrack" aria-labelledby="soundtrack-title">
+      <div class="section-label">02 / para escuchar mientras tanto</div>
+      <div class="section-heading">
+        <h2 id="soundtrack-title">Soundtrack<br><em>of Us</em></h2>
+        <p>Para que el tiempo pase más rápido… o más lento. Depende de la canción.</p>
+      </div>
+      <div class="playlist-frame">
+        <div class="playlist-frame__label"><span>nuestra playlist</span><span aria-hidden="true">01 — ∞</span></div>
+        <div class="video-ratio">
+          <iframe title="Playlist de YouTube: Soundtrack of Us" src="https://www.youtube.com/embed/videoseries?list=PLnPTQUgNXNBlLg0sULbJ01zoF1h2zwzlD" loading="lazy" allow="encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section curiosity" id="curiosidad" aria-labelledby="curiosity-title">
+      <div class="section-label">03 / un pequeño desvío</div>
+      <div class="section-heading"><h2 id="curiosity-title">Curiosidad<br><em>del día</em></h2></div>
+      <article class="fact-sheet" aria-live="polite">
+        <p class="fact-sheet__number" id="factNumber">01</p>
+        <p class="fact-sheet__category" id="factCategory"></p>
+        <h3 class="fact-sheet__title" id="factTitle"></h3>
+        <p class="fact-sheet__text" id="factText"></p>
+        <button class="outline-button" id="newFact" type="button">Mostrar otra <span aria-hidden="true">↗</span></button>
+      </article>
+    </section>
+
+    <section class="section preparation" id="preparando" aria-labelledby="preparation-title">
+      <div class="section-label">04 / antes de salir</div>
+      <div class="section-heading"><h2 id="preparation-title">Últimos<br><em>detalles</em></h2></div>
+      <div class="checklist-card">
+        <div class="checklist-card__top"><span id="checklistMessage">Compilando el viaje…</span><span id="checklistPercent">0%</span></div>
+        <div class="progress-line" aria-hidden="true"><span id="progressBar"></span></div>
+        <ul class="checklist" id="checklist"></ul>
+      </div>
+    </section>
+
+    <section class="section reward" id="recompensa" aria-labelledby="reward-title" hidden aria-hidden="true" inert>
+      <div class="section-label">05 / al final de la espera</div>
+      <div class="reward__unlock-card">
+        <p class="reward__message" id="reward-title">Todo preparado. Ahora solo falta encontrarnos.</p>
+        <button class="quiet-button" id="openReward" type="button">Pasar la última página →</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="final-page" id="finalPage" aria-hidden="true" hidden inert>
+    <div class="final-page__content" tabindex="-1">
+      <h2>Al final de la espera</h2>
+      <img class="final-page__image" src="./assets/abrazo-final.jpg" alt="Vane y Tati abrazándose en Marrakech" />
+      <p>Un abrazo pendiente desde hace casi un año.</p>
+      <button class="quiet-button final-page__back" id="closeFinalPage" type="button">← Volver al viaje</button>
+    </div>
+  </div>
+</body>
+</html>

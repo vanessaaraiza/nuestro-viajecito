@@ -1,0 +1,62 @@
+(function(){"use strict";
+var START_DATE_ISO="2026-08-06T12:00:00+01:00",END_DATE_ISO="2026-09-21T16:30:00+01:00",START_TIMESTAMP=Date.parse(START_DATE_ISO),END_TIMESTAMP=Date.parse(END_DATE_ISO),STORAGE_KEY="nuestro-viajecito-checklist-v2";
+var IMAGES={vanePacking:"./assets/vane-packing.jpg",tatiPacking:"./assets/tati-packing.jpg",vaneWalking:"./assets/vane-walking.jpg",tatiWalking:"./assets/tati-walking.jpg",hug:"./assets/abrazo-final.jpg"};
+var FACTS=[
+{category:"🏛 Arquitectura",title:"Riads tradicionales",text:"Los riads esconden toda su belleza hacia el interior. Desde fuera parecen casas sencillas, sin ventanas hacia la calle, para proteger la privacidad familiar y mantener el interior fresco durante el calor del verano."},
+{category:"🏛 Arquitectura",title:"Puertas antiguas",text:"Muchas puertas de Marrakech todavía conservan sus herrajes originales de hace siglos."},
+{category:"🏛 Arquitectura",title:"Zellige",text:"Los mosaicos de zellige siguen complejas reglas geométricas y matemáticas inspiradas en el arte islámico, donde tradicionalmente se evitaba representar figuras humanas y animales."},
+{category:"🏛 Arquitectura",title:"Ciudad Roja",text:"Marrakech fue fundada en 1062 y es conocida como la Ciudad Roja por el color de la arcilla con la que fueron construidas sus murallas y muchos de sus edificios."},
+{category:"🏛 Arquitectura",title:"El Badi",text:"El Palacio El Badi fue conocido como “El Incomparable”. Llegó a tener más de 300 habitaciones decoradas con oro, mármol italiano y turquesas, hasta que fue desmontado piedra por piedra durante doce años para reutilizar sus materiales."},
+{category:"🏛 Arquitectura",title:"Jardín Secreto",text:"El Jardín Secreto conserva un antiguo sistema de irrigación llamado khattara, que llevaba agua desde las montañas del Atlas mediante canales subterráneos."},
+{category:"🏛 Arquitectura",title:"Los cuatro ríos",text:"Su jardín islámico está dividido en cuatro cuadrantes que representan simbólicamente los cuatro ríos del paraíso: agua, leche, vino y miel."},
+{category:"🕌 Historia",title:"Tumbas Saadíes",text:"Durante siglos permanecieron ocultas tras una muralla construida para borrar el legado de la dinastía Saadí sin destruir el mausoleo."},
+{category:"🕌 Historia",title:"Mármol por azúcar",text:"El mármol blanco de Carrara utilizado en las Tumbas Saadíes llegó desde Italia y, según la tradición, fue intercambiado por su mismo peso en azúcar."},
+{category:"🌿 Cultura",title:"Negociar",text:"En muchos zocos negociar el precio forma parte de la conversación, no de una discusión."},
+{category:"🌿 Cultura",title:"Llamada a la oración",text:"Cinco veces al día la ciudad se llena con la llamada a la oración desde distintas mezquitas."},
+{category:"🌿 Cultura",title:"Farmacias",text:"En Marruecos las farmacias se identifican con una media luna verde, en lugar de la cruz verde habitual en muchos países europeos."},
+{category:"🌿 Cultura",title:"Hammam",text:"El horno tradicional llamado Farnatchi aprovecha los restos de madera del barrio para calentar los hammams y cocinar lentamente la famosa tanjia."},
+{category:"🌿 Cultura",title:"Medersa Ben Youssef",text:"La Medersa Ben Youssef, construida en 1565, no era un palacio sino un centro de enseñanza religiosa donde los estudiantes vivían y estudiaban alrededor de un patio central."},
+{category:"🌵 Naturaleza",title:"Dromedarios",text:"Aunque casi todo el mundo los llama camellos, en Marruecos en realidad son dromedarios, ya que tienen una sola joroba."},
+{category:"🌵 Naturaleza",title:"Agafay",text:"El desierto de Agafay está a solo unos 40 kilómetros de Marrakech. No tiene dunas de arena, sino colinas de piedra que parecen un paisaje lunar."},
+{category:"🌵 Naturaleza",title:"Las cigüeñas",text:"Los enormes nidos de cigüeñas sobre las murallas forman parte del paisaje de Marrakech y están protegidos. Una antigua leyenda dice que son antiguos sabios convertidos en guardianes de la ciudad."},
+{category:"🎨 Arte",title:"Majorelle Blue",text:"El intenso azul del Jardín Majorelle fue creado y patentado por Jacques Majorelle en 1937. Hoy es uno de los colores más famosos del mundo del diseño."},
+{category:"🎨 Arte",title:"Yves Saint Laurent",text:"Yves Saint Laurent decía que Marrakech le enseñó a usar el color y cambió para siempre su manera de diseñar."},
+{category:"🌍 Ciudad",title:"Dos ciudades",text:"Marrakech está formada por dos mundos completamente distintos: la Medina, un laberinto medieval pensado para desorientar a los invasores, y Gueliz, un barrio moderno diseñado con avenidas rectas durante el protectorado francés."},
+{category:"🌍 Ciudad",title:"Jemaa el-Fna no es solo una plaza",text:"La UNESCO protege Jemaa el-Fna como un espacio cultural vivo por sus narradores, músicos, curanderos, artistas y tradiciones orales. Su importancia no está únicamente en la arquitectura, sino en todo lo que ocurre allí cada día."},
+{category:"🌍 Ciudad",title:"La Koutoubia tiene “parientes” arquitectónicos",text:"El estilo almohade de su minarete pertenece a la misma familia arquitectónica que la Torre Hassan de Rabat y la Giralda de Sevilla. Por eso, aunque estén en tres ciudades distintas, comparten proporciones y lenguaje ornamental."},
+{category:"🗣️ Pequeño diccionario",title:"Hola",text:"Salam — سلام"},{category:"🗣️ Pequeño diccionario",title:"Gracias",text:"Shukran — شكراً"},{category:"🗣️ Pequeño diccionario",title:"Con permiso",text:"Smah li"},{category:"🗣️ Pequeño diccionario",title:"Hasta luego",text:"Bslama"},{category:"🗣️ Pequeño diccionario",title:"Muy bonito",text:"Zwin"},{category:"🗣️ Pequeño diccionario",title:"Me gustas",text:"Kanbghik — كنبغيك\n\nSignifica:\n“Te quiero” o “me gustas”, dependiendo del contexto.\n\nÚsala bajo tu propia responsabilidad 😄."}
+];
+var CHECKLIST=[{id:"pasaporte",label:"Pasaporte"},{id:"check-in",label:"Hacer el check-in del vuelo"},{id:"protector-solar",label:"Protector solar"},{id:"cargador",label:"Cargador"},{id:"calzado",label:"Calzado cómodo"},{id:"pijama",label:"Pijama"},{id:"mapas",label:"Descargar mapas sin conexión"},{id:"maleta",label:"Maleta lista"},{id:"ganas",label:"Muchas ganas de vernos"}];
+var els={},countdownTimer=null,lastFactIndex=-1,walkingMode=null;function $(id){return document.getElementById(id)}function pad(n){return String(n).padStart(2,"0")}
+function initElements(){["days","hours","minutes","seconds","vane","tati","vaneImage","tatiImage","hug","arrivalCopy","newFact","factNumber","factCategory","factTitle","factText","checklist","checklistMessage","checklistPercent","progressBar","recompensa","openReward","finalPage","closeFinalPage"].forEach(function(id){els[id]=$(id)});els.reward=els.recompensa;els.rewardButton=els.openReward;els.finalPageContent=document.querySelector(".final-page__content")}
+function setTravellerState(progress){var walking=progress>=35;if(walkingMode!==walking){walkingMode=walking;els.vaneImage.src=walking?IMAGES.vaneWalking:IMAGES.vanePacking;els.tatiImage.src=walking?IMAGES.tatiWalking:IMAGES.tatiPacking;els.vaneImage.alt=walking?"Vane caminando con su maleta":"Vane preparando su maleta";els.tatiImage.alt=walking?"Tati caminando con su maleta":"Tati preparando su maleta"}var offset=Math.min(36,progress*.36);els.vane.style.left=7+offset+"%";els.tati.style.right=7+offset+"%"}
+function updateCountdown(){var now=Date.now(),journeyLength=END_TIMESTAMP-START_TIMESTAMP,elapsed=now-START_TIMESTAMP,progress=now<START_TIMESTAMP?0:Math.min(100,Math.max(0,elapsed/journeyLength*100)),remaining=Math.max(0,END_TIMESTAMP-now),arrived=remaining<=0;els.days.textContent=pad(Math.floor(remaining/86400000));els.hours.textContent=pad(Math.floor(remaining%86400000/3600000));els.minutes.textContent=pad(Math.floor(remaining%3600000/60000));els.seconds.textContent=pad(Math.floor(remaining%60000/1000));setTravellerState(progress);document.body.classList.toggle("has-arrived",arrived);els.arrivalCopy.hidden=!arrived;els.hug.setAttribute("aria-hidden",arrived?"false":"true");if(arrived&&countdownTimer){clearInterval(countdownTimer);countdownTimer=null}}
+function renderChecklist(){els.checklist.innerHTML=CHECKLIST.map(function(item){return '<li><label class="check-item"><input type="checkbox" data-task="'+item.id+'"><span class="check-item__box" aria-hidden="true"></span><span>'+item.label+'</span></label></li>'}).join("");els.checklist.querySelectorAll("input").forEach(function(input){input.addEventListener("change",updateChecklist)})}
+function restoreChecklist(){var saved={};try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){}els.checklist.querySelectorAll("input").forEach(function(input){input.checked=Boolean(saved[input.dataset.task])});updateChecklist()}
+function updateChecklist(){var inputs=Array.from(els.checklist.querySelectorAll("input")),checked=inputs.filter(function(i){return i.checked}).length,percent=inputs.length?Math.round(checked/inputs.length*100):0,saved={};inputs.forEach(function(input){saved[input.dataset.task]=input.checked});try{localStorage.setItem(STORAGE_KEY,JSON.stringify(saved))}catch(e){}els.checklistPercent.textContent=percent+"%";els.progressBar.style.width=percent+"%";els.checklistMessage.textContent=percent===100?"Todo preparado. Ahora solo falta encontrarnos.":"Compilando el viaje…";var unlocked=percent===100;els.reward.hidden=!unlocked;els.reward.setAttribute("aria-hidden",unlocked?"false":"true");if(unlocked){els.reward.removeAttribute("inert")}else{els.reward.setAttribute("inert","");closeFinalPage()}}
+function showFact(index,animate){var fact=FACTS[index];function write(){els.factNumber.textContent=pad(index+1);els.factCategory.textContent=fact.category;els.factTitle.textContent=fact.title;els.factText.textContent=fact.text}if(!animate){write();return}els.factText.classList.add("is-changing");setTimeout(function(){write();els.factText.classList.remove("is-changing")},180)}
+function showNewFact(){var next=Math.floor(Math.random()*FACTS.length);if(FACTS.length>1&&next===lastFactIndex)next=(next+1)%FACTS.length;lastFactIndex=next;showFact(next,true)}
+function openReward(){if(els.reward.hidden)return;els.finalPage.hidden=false;els.finalPage.setAttribute("aria-hidden","false");els.finalPage.removeAttribute("inert");requestAnimationFrame(function(){els.finalPage.classList.add("is-open")});document.body.classList.add("final-page-open");els.finalPageContent.focus()}
+function closeFinalPage(){if(!els.finalPage||els.finalPage.hidden)return;els.finalPage.classList.remove("is-open");els.finalPage.setAttribute("aria-hidden","true");els.finalPage.setAttribute("inert","");document.body.classList.remove("final-page-open");setTimeout(function(){if(!els.finalPage.classList.contains("is-open"))els.finalPage.hidden=true},220)}
+function init(){initElements();els.newFact.addEventListener("click",showNewFact);els.rewardButton.addEventListener("click",openReward);els.closeFinalPage.addEventListener("click",closeFinalPage);document.addEventListener("keydown",function(event){if(event.key==="Escape"&&els.finalPage.classList.contains("is-open"))closeFinalPage()});renderChecklist();restoreChecklist();var firstFact=Math.floor(Math.random()*FACTS.length);lastFactIndex=firstFact;showFact(firstFact,false);updateCountdown();countdownTimer=setInterval(updateCountdown,1000)}
+init();
+// Nivel secreto desbloqueado: mejorar esta página juntos.
+// TODO:
+// Llegar a Marrakech.
+// Abrazarnos.
+// Repetir.
+// Error 404:
+// Distancia entre nosotros no encontrada.
+// Aquí podrías añadir una nueva función que yo no espere.
+// P. D. Me gustas mucho.
+})();
+/*
+Si llegaste hasta aquí...
+
+es porque la curiosidad pudo más.
+
+Y creo que esa es una de las cosas
+que más me gustan de ti.
+
+— V
+*/
